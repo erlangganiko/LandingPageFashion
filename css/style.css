@@ -1,0 +1,214 @@
+/* CSS Reset & Basic Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Header / Navbar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background-color: #ffffff;
+  z-index: 200; /* Z-index tertinggi agar selalu di depan menu */
+  border-bottom: 1px solid #eee;
+  height: 80px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo span {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.event-date {
+  font-size: 1rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.menu-button {
+  font-size: 1rem;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* --- Style untuk Menu Panel Vertikal --- */
+.dropdown-menu {
+  position: fixed;
+  top: 0; /* Diubah: Mulai dari paling atas layar */
+  right: 0; /* Ditambahkan: Menempel di sisi kanan layar */
+  width: 50vw; /* Diubah: Lebar setengah layar (viewport width) */
+  height: 100vh; /* Diubah: Tinggi penuh layar (viewport height) */
+
+  background-color: #ffffff;
+  z-index: 199; /* Tepat di belakang header */
+  border-left: 1px solid #eee; /* Diubah: Garis batas di kiri */
+
+  /* Diubah: Animasi geser dari kanan */
+  opacity: 1; /* Opacity tidak lagi dianimasikan */
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-in-out, visibility 0.4s;
+}
+
+/* Style saat menu aktif (terlihat) */
+.dropdown-menu.active {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Konten di dalam menu */
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 40px;
+  padding-top: 100px; /* Ditambahkan padding atas agar tidak tertutup header */
+  height: 100%;
+}
+
+/* (Kode untuk .main-nav dan .secondary-nav tetap sama) */
+.main-nav ul,
+.secondary-nav ul {
+  list-style: none;
+  text-align: right;
+}
+.main-nav a {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #000;
+  text-decoration: none;
+  line-height: 1.5;
+  display: inline-block;
+}
+.main-nav a span {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+.secondary-nav {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+.secondary-nav a {
+  font-size: 0.9rem;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  line-height: 1.8;
+}
+
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan 50% transparansi */
+  z-index: 198; /* Di bawah menu (199) tapi di atas konten lain */
+
+  /* Disembunyikan secara default */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s;
+}
+
+.page-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hero Section with Big Text */
+.hero-container {
+  height: 100vh; /* Tinggi 100% dari viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* INI KUNCINYA (BAGIAN 1): Buat section ini "lengket" */
+  position: sticky;
+  top: 0; /* Menempel di bagian atas saat di-scroll */
+  z-index: 1; /* Posisinya di belakang video-section */
+  background-color: #fff; /* Pastikan ada background agar tidak transparan */
+}
+
+.hero-container h1 {
+  margin-top: -200px;
+  margin-left: -400px;
+  text-align: left;
+  font-size: 10vw; /* Ukuran font responsif sesuai lebar viewport */
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -4px;
+  text-transform: uppercase;
+}
+
+/* Video Section */
+.video-section {
+  height: 100vh; /* Tinggi 100% dari viewport */
+  position: relative; /* Diperlukan agar video di dalamnya bisa di-position absolute */
+  overflow: hidden;
+
+  /* INI KUNCINYA (BAGIAN 2): Posisikan di atas hero-container */
+  z-index: 2; /* Z-index lebih tinggi dari .hero-container */
+}
+
+.video-section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover; /* Memastikan video menutupi area tanpa distorsi */
+}
+
+/* Content Section After Video */
+.main-content {
+  padding: 50px 40px;
+  background-color: #ffffff;
+  position: relative; /* Pastikan konten ini solid */
+  z-index: 3; /* Z-index lebih tinggi agar muncul setelah video */
+  height: 150vh; /* Hanya untuk memberi ruang scroll tambahan */
+}
+
+.main-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
