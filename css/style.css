@@ -482,7 +482,7 @@ header {
     border-bottom: 1px solid #eee; /* Beri garis bawah */
     height: auto; /* Tinggi menyesuaikan konten */
     padding: 15px 20px; /* Padding di mode responsif */
-    width: 100%;
+    width: 50%;
     top: 0;
     left: 0;
     justify-content: space-between;
@@ -573,6 +573,9 @@ header {
     gap: 20px;
     flex-direction: column;
     align-items: flex-end;
+  }
+  .video-section video {
+    width: 50%;
   }
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
