@@ -344,6 +344,7 @@ header {
 .slider {
   background-color: #f8f8f8;
   padding: 40px 0;
+   overflow: hidden; 
 }
 .scrolling-row {
   display: flex;
@@ -482,7 +483,7 @@ header {
     border-bottom: 1px solid #eee; /* Beri garis bawah */
     height: auto; /* Tinggi menyesuaikan konten */
     padding: 15px 20px; /* Padding di mode responsif */
-    width: 50%;
+    width: 100%;
     top: 0;
     left: 0;
     justify-content: space-between;
@@ -494,6 +495,10 @@ header {
     flex-direction: column; /* KUNCI: Tumpuk logo dan meta */
     align-items: flex-start; /* Rata kiri */
     gap: 0;
+  }
+
+  .body{
+    overflow-x: hidden;
   }
 
   .logo {
@@ -546,6 +551,10 @@ header {
     gap: 40px; /* Beri jarak antara judul dan sponsor */
     padding: 0 20px; /* Beri padding agar tidak terlalu mepet tepi */
   }
+   .body{
+    overflow-x: hidden;
+  }
+
 
   .hero-container h1,
   .sponsor img,
@@ -573,9 +582,6 @@ header {
     gap: 20px;
     flex-direction: column;
     align-items: flex-end;
-  }
-  .video-section video {
-    width: 50%;
   }
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
@@ -605,6 +611,10 @@ header {
   .mosaic {
     grid-template-columns: 1fr;
   }
+   .body{
+    overflow-x: hidden;
+  }
+
   .partner-logo img {
     max-width: 200px;
   }
