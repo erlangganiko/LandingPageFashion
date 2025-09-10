@@ -4,33 +4,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-button");
   const dropdownMenu = document.getElementById("dropdown-menu");
   const pageOverlay = document.getElementById("page-overlay");
-  
 
+  // KODE BARU
   if (menuButton && dropdownMenu && pageOverlay) {
     // Tambahkan event listener ke tombol menu
     menuButton.addEventListener("click", function (event) {
-      event.preventDefault(); // Mencegah link default
+      event.preventDefault();
 
-      // Toggle class 'active' pada menu dan overlay
+      // Toggle class 'active' pada menu, overlay, dan tombol itu sendiri
       dropdownMenu.classList.toggle("active");
       pageOverlay.classList.toggle("active");
-
-      // Cek apakah menu sekarang aktif atau tidak untuk mengubah teks tombol
-      const isMenuActive = dropdownMenu.classList.contains("active");
-      if (isMenuActive) {
-        menuButton.textContent = "Close";
-      } else {
-        menuButton.textContent = "Menu";
-      }
+      menuButton.classList.toggle("active"); // Tambahkan baris ini
     });
   }
-  
+
   const filterChips = document.querySelectorAll(".chips .chip");
   const scheduleCards = document.querySelectorAll(".cards .card");
 
   // Jika elemen filter dan kartu ditemukan, jalankan fungsinya
   if (filterChips.length > 0 && scheduleCards.length > 0) {
-    
     // Fungsi untuk memfilter kartu berdasarkan kategori
     const filterCards = (filterValue) => {
       scheduleCards.forEach((card) => {
@@ -50,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       chip.addEventListener("click", () => {
         // 1. Hapus kelas 'chip--on' dari semua tombol
         filterChips.forEach((c) => c.classList.remove("chip--on"));
-        
+
         // 2. Tambahkan kelas 'chip--on' ke tombol yang diklik
         chip.classList.add("chip--on");
 
