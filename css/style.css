@@ -27,6 +27,7 @@ body {
     Arial, sans-serif;
   background-color: #fff;
   color: #000;
+  overflow-x: hidden; /* Pastikan overflow horizontal disembunyikan */
 }
 
 /* Header / Navbar */
