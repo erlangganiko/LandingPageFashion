@@ -227,7 +227,7 @@ header {
   margin-bottom: 10px;
 }
 .sponsor img {
-  margin-right: -550px;
+  margin-right: -630px;
   max-width: clamp(140px, 18vw, 280px);
   height: auto;
 }
@@ -322,18 +322,43 @@ header {
   gap: 2px;
   background: var(--line);
 }
-.mosaic-tile {
+.mosaic-tile-container {
   position: relative;
-  background: #000;
-  aspect-ratio: 1/1;
+  width: fit-content; /* Sesuaikan dengan ukuran video Anda */
   overflow: hidden;
 }
+
 .mosaic-tile video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.overlay {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  /* Ubah background-color menjadi lebih transparan */
+  background-color: rgba(255, 255, 255, 0.2); /* Contoh: putih transparan */
+
+  /* Tambahkan ini untuk efek buram/keruh */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Untuk dukungan browser Safari */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Mungkin ganti warna teks agar kontras */
+  font-size: 2em;
+  font-weight: bold;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.mosaic-tile-container:hover .overlay {
+  transform: translateY(0);
 }
 .partners-section h2 {
   text-align: left;
