@@ -1,30 +1,92 @@
-// JavaScript tidak diperlukan untuk efek scroll utama pada kasus ini.
-// CSS `position: sticky` sudah menangani semuanya.
-// Anda bisa menambahkan JS di sini untuk fungsionalitas lain,
-// seperti animasi tambahan, fetch data, dll.
-console.log("Landing page loaded. Scroll effect is powered by CSS.");
 // --- Logika untuk Menu Dropdown (Toggle) ---
+document.addEventListener("DOMContentLoaded", () => {
+  // Ambil elemen-elemen yang dibutuhkan untuk menu
+  const menuButton = document.querySelector(".menu-button");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+  const pageOverlay = document.getElementById("page-overlay");
+  
 
-// --- Logika untuk Menu Dropdown (Toggle) ---
+  if (menuButton && dropdownMenu && pageOverlay) {
+    // Tambahkan event listener ke tombol menu
+    menuButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Mencegah link default
 
-// 1. Ambil elemen-elemen yang dibutuhkan
-const menuButton = document.querySelector(".menu-button");
-const dropdownMenu = document.getElementById("dropdown-menu");
-const pageOverlay = document.getElementById("page-overlay"); // Ditambahkan
+      // Toggle class 'active' pada menu dan overlay
+      dropdownMenu.classList.toggle("active");
+      pageOverlay.classList.toggle("active");
 
-// 2. Tambahkan event listener ke tombol menu
-menuButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Mencegah link default
+      // Cek apakah menu sekarang aktif atau tidak untuk mengubah teks tombol
+      const isMenuActive = dropdownMenu.classList.contains("active");
+      if (isMenuActive) {
+        menuButton.textContent = "Close";
+      } else {
+        menuButton.textContent = "Menu";
+      }
+    });
+  }
+  
+  const filterChips = document.querySelectorAll(".chips .chip");
+  const scheduleCards = document.querySelectorAll(".cards .card");
 
-  // Toggle class 'active' pada menu dan overlay
-  dropdownMenu.classList.toggle("active");
-  pageOverlay.classList.toggle("active"); // Ditambahkan
+  // Jika elemen filter dan kartu ditemukan, jalankan fungsinya
+  if (filterChips.length > 0 && scheduleCards.length > 0) {
+    
+    // Fungsi untuk memfilter kartu berdasarkan kategori
+    const filterCards = (filterValue) => {
+      scheduleCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
 
-  // Cek apakah menu sekarang aktif atau tidak untuk mengubah teks tombol
-  const isMenuActive = dropdownMenu.classList.contains("active");
-  if (isMenuActive) {
-    menuButton.textContent = "Close";
-  } else {
-    menuButton.textContent = "Menu";
+        // Tampilkan kartu jika filter adalah 'all' atau kategorinya cocok
+        if (filterValue === "all" || cardCategory === filterValue) {
+          card.style.display = "block"; // atau 'grid' jika Anda menggunakan display grid
+        } else {
+          card.style.display = "none";
+        }
+      });
+    };
+
+    // Tambahkan event listener untuk setiap tombol chip
+    filterChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        // 1. Hapus kelas 'chip--on' dari semua tombol
+        filterChips.forEach((c) => c.classList.remove("chip--on"));
+        
+        // 2. Tambahkan kelas 'chip--on' ke tombol yang diklik
+        chip.classList.add("chip--on");
+
+        // 3. Ambil nilai filter dari atribut data-filter
+        const filterValue = chip.getAttribute("data-filter");
+
+        // 4. Panggil fungsi filter
+        filterCards(filterValue);
+      });
+    });
+  }
+  // --- Logika untuk Infinite Scroller Otomatis ---
+  const scrollers = document.querySelectorAll(".scrolling-row");
+
+  // Jika pengguna tidak mengaktifkan "reduced motion", jalankan animasi
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addAnimation();
+  }
+
+  function addAnimation() {
+    scrollers.forEach((scroller) => {
+      // Mencegah duplikasi jika skrip dijalankan lagi
+      if (scroller.getAttribute("data-animated")) return;
+
+      // Tandai elemen sebagai sudah dianimasikan
+      scroller.setAttribute("data-animated", true);
+
+      // Ambil semua elemen di dalam scroller dan buat salinannya
+      const scrollerInner = Array.from(scroller.children);
+
+      scrollerInner.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        // Sembunyikan elemen duplikat dari screen reader
+        duplicatedItem.setAttribute("aria-hidden", true);
+        scroller.appendChild(duplicatedItem);
+      });
+    });
   }
 });
