@@ -4,15 +4,11 @@
   --ink: #111213;
   --muted: #7a7a7a;
   --line: #e9e9e9;
-  --blue: #00b8ff; /* Bandung Electric (aksen) */
-  --gold: #cda669; /* selaras logo Ferry Sunarto */
+  --blue: #00b8ff;
+  --gold: #cda669;
   --max: 1440px;
   --g: clamp(16px, 3vw, 40px);
   --r: 12px;
-
-  --eyebrow: clamp(14px, 1.1vw, 18px);
-  --meta: clamp(14px, 1.1vw, 18px);
-  --h-hero: clamp(72px, 12vw, 200px);
   --h-2: clamp(36px, 5vw, 72px);
   --body: clamp(14px, 1.05vw, 18px);
 }
@@ -21,7 +17,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
@@ -30,7 +25,9 @@ body {
   overflow-x: hidden; /* Pastikan overflow horizontal disembunyikan */
 }
 
-/* Header / Navbar */
+/* ================================== */
+/* === PENGATURAN HEADER & NAVIGASI === */
+/* ================================== */
 header {
   position: fixed;
   top: 0;
@@ -44,43 +41,49 @@ header {
   z-index: 200;
   border-bottom: 1px solid #eee;
   height: 80px;
+  transition: all 0.3s ease; /* Transisi untuk perubahan responsif */
 }
 
 .logo {
   font-weight: bold;
   font-size: 1.2rem;
 }
-
 .logo span {
   font-weight: normal;
   font-size: 0.9rem;
   color: #555;
 }
-
 .event-date {
   font-size: 1rem;
 }
-
 .header-right {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-/* ======================================= */
-/* === GAYA BARU UNTUK MENU HAMBURGER === */
-/* ======================================= */
+/* Tombol Menu Container */
 .menu-button {
+  cursor: pointer;
+  position: relative;
+}
+
+/* Teks "Menu" untuk Desktop */
+.menu-text {
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Ikon Hamburger untuk Mobile */
+.hamburger-icon {
   width: 30px;
   height: 22px;
-  position: relative;
-  cursor: pointer;
-  display: flex;
+  display: flex; /* Diubah dari none */
   flex-direction: column;
   justify-content: space-between;
 }
-
-.menu-button span {
+.hamburger-icon span {
   display: block;
   width: 100%;
   height: 2px;
@@ -89,24 +92,30 @@ header {
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+/* Pengaturan Tampilan Default (Desktop) */
+.hamburger-icon {
+  display: none; /* Sembunyikan ikon hamburger di desktop */
+}
+.menu-text {
+  display: block; /* Tampilkan teks menu di desktop */
+}
+
 /* Animasi Hamburger menjadi 'X' saat menu aktif */
-.menu-button.active span:nth-of-type(1) {
+.menu-button.active .hamburger-icon span:nth-of-type(1) {
   transform-origin: bottom;
   transform: rotatez(45deg) translate(8px, 5px);
 }
-
-.menu-button.active span:nth-of-type(2) {
+.menu-button.active .hamburger-icon span:nth-of-type(2) {
   transform-origin: top;
   transform: rotatez(-45deg);
 }
-
-.menu-button.active span:nth-of-type(3) {
+.menu-button.active .hamburger-icon span:nth-of-type(3) {
   transform-origin: bottom;
-  width: 0; /* Sembunyikan garis tengah */
+  width: 0;
   transform: translateX(30px) rotatez(45deg);
 }
 
-/* --- Style untuk Menu Panel Vertikal --- */
+/* --- Panel Menu Dropdown (Sama seperti sebelumnya) --- */
 .dropdown-menu {
   position: fixed;
   top: 0;
@@ -120,12 +129,10 @@ header {
   transform: translateX(100%);
   transition: transform 0.4s ease-in-out, visibility 0.4s;
 }
-
 .dropdown-menu.active {
   visibility: visible;
   transform: translateX(0);
 }
-
 .dropdown-content {
   display: flex;
   flex-direction: column;
@@ -135,7 +142,6 @@ header {
   padding-top: 100px;
   height: 100%;
 }
-
 .main-nav ul,
 .secondary-nav ul {
   list-style: none;
@@ -166,6 +172,7 @@ header {
   line-height: 1.8;
 }
 
+/* Page Overlay (Sama seperti sebelumnya) */
 .page-overlay {
   position: fixed;
   top: 0;
@@ -178,13 +185,12 @@ header {
   visibility: hidden;
   transition: opacity 0.4s ease-in-out, visibility 0.4s;
 }
-
 .page-overlay.active {
   opacity: 1;
   visibility: visible;
 }
 
-/* Sisa CSS Anda (hero, video, content, dll.) */
+/* ... (SEMUA KODE CSS LAINNYA DARI .hero-container SAMPAI .bigword TETAP SAMA) ... */
 .hero-container {
   height: 100vh;
   display: flex;
@@ -196,7 +202,6 @@ header {
   z-index: 1;
   background-color: #fff;
 }
-
 .hero-container h1 {
   margin-top: -200px;
   margin-left: -600px;
@@ -232,7 +237,6 @@ header {
   overflow: hidden;
   z-index: 2;
 }
-
 .video-section video {
   position: absolute;
   top: 50%;
@@ -245,7 +249,7 @@ header {
   object-fit: cover;
 }
 .main-content {
-  background-color: #ffffff;
+  background-color: #fff;
   position: relative;
   z-index: 3;
 }
@@ -355,7 +359,7 @@ header {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - (10px / 2)));
+    transform: translateX(calc(-50% - 5px));
   }
 }
 .partner-logo {
@@ -372,7 +376,7 @@ header {
   transition: all 0.3s ease;
 }
 .partner-logo:hover img {
-  filter: grayscale(0%);
+  filter: grayscale(0);
   opacity: 1;
   transform: scale(1.1);
 }
@@ -467,12 +471,60 @@ header {
 }
 
 /* ======================================= */
-/* ====== BAGIAN RESPONSIVE ====== */
+/* ====== BAGIAN RESPONSIVE (REVISI) ====== */
 /* ======================================= */
 
 /* Untuk Tablet (<= 992px) */
 @media (max-width: 992px) {
-  /* Atur ulang posisi hero agar tidak terlalu jauh dari layar */
+  header {
+    /* Header di mode responsif */
+    background-color: #ffffff; /* Beri background putih */
+    border-bottom: 1px solid #eee; /* Beri garis bawah */
+    height: auto; /* Tinggi menyesuaikan konten */
+    padding: 15px 20px; /* Padding di mode responsif */
+    width: 100%;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .header-left {
+    flex-direction: column; /* KUNCI: Tumpuk logo dan meta */
+    align-items: flex-start; /* Rata kiri */
+    gap: 0;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+  .logo span {
+    display: flex;
+  }
+
+  .event-meta {
+    display: block; /* Tampilkan event-meta */
+    font-size: 0.8rem;
+    color: var(--ink);
+    margin-top: 5px;
+  }
+
+  /* TUKAR TAMPILAN TOMBOL */
+  .hamburger-icon {
+    display: flex;
+  }
+  .menu-text {
+    display: none;
+  }
+
+  /* ... Sisa aturan lainnya ... */
+  .dropdown-menu {
+    width: 50vw;
+  }
+  .main-nav a {
+    font-size: 2.5rem;
+  }
   .hero-container h1 {
     margin-left: -30vw;
     font-size: 12vw;
@@ -481,42 +533,38 @@ header {
   .poweredby {
     margin-right: -25vw;
   }
-
-  /* Perkecil menu dropdown */
-  .dropdown-menu {
-    width: 60vw;
-  }
-  .main-nav a {
-    font-size: 2.5rem;
-  }
 }
 
 /* Untuk Mobile (<= 768px) */
 @media (max-width: 768px) {
-  /* Sembunyikan tanggal dan perkecil padding header */
-  .event-date {
-    display: none;
-  }
   header {
-    padding: 0 20px;
-    height: 70px;
+    top: 20px;
+    right: 20px;
+  }
+  .hero-container {
+    flex-direction: column; /* Susun item secara vertikal */
+    gap: 40px; /* Beri jarak antara judul dan sponsor */
+    padding: 0 20px; /* Beri padding agar tidak terlalu mepet tepi */
   }
 
-  /* Atur ulang layout hero agar tetap terlihat bagus di mobile */
-  .hero-container h1 {
-    margin-top: -15vh;
-    margin-left: -40vw;
-    font-size: 14vw;
-    letter-spacing: -2px;
-  }
+  .hero-container h1,
   .sponsor img,
   .poweredby {
-    margin-right: -35vw;
+    margin: 0; /* HAPUS semua margin negatif */
+    text-align: center; /* Posisikan semua di tengah */
   }
 
-  /* Perkecil menu dropdown dan font di dalamnya */
+  .hero-container h1 {
+    font-size: 15vw; /* Sesuaikan ukuran font untuk mobile */
+    letter-spacing: -2px;
+  }
+
+  .sponsor {
+    align-self: center;
+    justify-self: center;
+  }
   .dropdown-menu {
-    width: 85vw;
+    width: 50vw;
   }
   .main-nav a {
     font-size: 2rem;
@@ -526,26 +574,20 @@ header {
     flex-direction: column;
     align-items: flex-end;
   }
-
-  /* Ubah grid mosaic menjadi 2 kolom */
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Ubah daftar kota menjadi 1 kolom */
   .list {
     grid-template-columns: 1fr;
   }
   .row {
-    grid-template-columns: 1fr; /* Hapus grid kompleks, susun vertikal */
+    grid-template-columns: 1fr;
     gap: 8px;
     align-items: flex-start;
   }
   .partner-logo img {
     max-width: 280px;
   }
-
-  /* Susun kolom footer secara vertikal */
   .footer .in {
     flex-direction: column;
     text-align: center;
@@ -557,20 +599,12 @@ header {
 
 /* Untuk Mobile Kecil (<= 480px) */
 @media (max-width: 480px) {
-  .logo {
-    font-size: 1rem;
-  }
-
-  /* Jadikan mosaic 1 kolom saja */
   .mosaic {
     grid-template-columns: 1fr;
   }
-
-  /* Kurangi ukuran logo partner lebih kecil lagi */
   .partner-logo img {
     max-width: 200px;
   }
-
   .bigword {
     font-size: 18vw;
   }
