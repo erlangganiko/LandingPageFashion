@@ -227,7 +227,11 @@ header {
   margin-bottom: 10px;
 }
 .sponsor img {
+<<<<<<< HEAD
   margin-right: -630px;
+=======
+  margin-right: -635px;
+>>>>>>> 7d5e6853e6356c65e1908dd7bf8d1aa17660b10a
   max-width: clamp(140px, 18vw, 280px);
   height: auto;
 }
@@ -369,7 +373,7 @@ header {
 .slider {
   background-color: #f8f8f8;
   padding: 40px 0;
-  overflow: hidden;
+   overflow: hidden; 
 }
 .scrolling-row {
   display: flex;
@@ -522,7 +526,7 @@ header {
     gap: 0;
   }
 
-  .body {
+  .body{
     overflow-x: hidden;
   }
 
@@ -548,6 +552,7 @@ header {
     display: none;
   }
 
+  /* ... Sisa aturan lainnya ... */
   .dropdown-menu {
     width: 50vw;
   }
@@ -567,7 +572,7 @@ header {
 /* Untuk Mobile (<= 768px) */
 @media (max-width: 768px) {
   header {
-    top: 0px;
+   
     right: 20px;
   }
   .hero-container {
@@ -575,9 +580,10 @@ header {
     gap: 40px; /* Beri jarak antara judul dan sponsor */
     padding: 0 20px; /* Beri padding agar tidak terlalu mepet tepi */
   }
-  .body {
+   .body{
     overflow-x: hidden;
   }
+
 
   .hero-container h1,
   .sponsor img,
@@ -634,7 +640,7 @@ header {
   .mosaic {
     grid-template-columns: 1fr;
   }
-  .body {
+   .body{
     overflow-x: hidden;
   }
 

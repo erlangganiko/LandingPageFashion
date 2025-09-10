@@ -81,4 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  const newsletterForm = document.getElementById("newsletter-form");
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (event) {
+      // 1. Mencegah form mengirim data ke server (perilaku default)
+      event.preventDefault(); 
+      
+      // 2. Mengarahkan pengguna ke halaman "Terima Kasih"
+      window.location.href = "emailtemplatebfw.html"; 
+    });
+  }
 });
